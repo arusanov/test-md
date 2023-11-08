@@ -1,0 +1,15 @@
+[
+    {
+        "id": "my-site",
+        "path": "docs/content",
+        "schema": {
+            "path": "schema/index.js",
+            "type": "esm",
+            "property": "default",
+            "watch": true
+        },
+        "routing": {
+            "frontmatter": "route"
+        }
+    }
+]

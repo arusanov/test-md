@@ -1,0 +1,105 @@
+---
+title: Test
+some_props: xxx
+---
+# My Markdown Document
+
+## Replacements
+
+This is a text replacement <DB>
+
+This is a tag replacement: {% subs val="DB" /%}
+
+Is not replaced in code `<DB>` and <CustomTags> with no replacement are renderd as text.
+
+## Tabs custom tag
+
+{% tabs %}
+
+{% tab label="React" %}
+React content goes here
+{% /tab %}
+
+{% tab label="HTML" %}
+HTML content goes here
+{% /tab %}
+
+{% /tabs %}
+
+
+# Conditional
+
+
+This is a paragraph of text.
+
+{% if $isAws %}
+Only appear in AWS
+Has 
+```js
+var code = 'some code'
+```
+{% /if %}
+
+# Partials
+
+{% partial file="partial.markdoc" /%}
+
+## Subheading
+
+Here's a list of items:
+- Item 1
+- Item 2
+- Item 3
+
+And here's an image:
+![alt text](https://picsum.photos/200)
+
+## Table using markdoc
+
+{% table %}
+* Heading 1
+* Heading 2
+---
+* Row 1 Cell 1
+* Row 1 Cell 2
+---
+* Row 2 Cell 1
+* Row 2 cell 2
+{% /table %}
+
+## Table with rich content
+
+{% table %}
+* Foo
+* Bar
+* Baz
+---
+*
+  ```
+  puts "Some code here."
+  ```
+
+* Text in a table
+---
+*
+  A "loose" list with
+
+  multiple line items
+* Test 2
+* Test 3
+---
+* Test 1
+* A cell that spans two columns {% colspan=2 %}
+{% /table %}
+
+## Table using GFM
+
+| foo | bar |
+| --- | --- |
+| baz | bim |
+
+## Callout
+
+{% callout type="note" title="wow" %}
+Tags are composable!
+{% /callout %}
