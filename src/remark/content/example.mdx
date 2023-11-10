@@ -1,0 +1,82 @@
+---
+title: Test
+some_props: xxx
+---
+# Hello, world! Replacement goes next: [DB]
+
+Another type of replacement :replace[DB]
+
+## Cloud specifics
+
+:::aws
+## Some aws block text
+:::
+:::gcp
+## Some gcp block text
+:::
+
+Some cloud specific inline text: :aws[aws text]:gcp[gcp text]
+
+### Custom components
+
+Below is an example of markdown in JSX.
+
+<div style={{backgroundColor: 'violet', padding: '1rem'}}>
+  Try and change the background color to `tomato`.
+</div>
+
+# Tabs
+
+<Tabs>
+    <TabList>
+        <Tab>React</Tab>
+        <Tab>HTML</Tab>
+    </TabList>
+    <TabPanel>
+    ```js
+    React content goes here
+    ```
+    </TabPanel>
+    <TabPanel>
+    ```js
+    HTML content goes here
+    ```
+    </TabPanel>
+</Tabs>
+
+
+## Subheading
+
+Here's a list of items:
+- Item 1
+- Item 2
+- Item 3
+
+And here's an image:
+![alt text](https://picsum.photos/200)
+
+## Table using GFM
+
+| foo | bar |
+| --- | --- |
+| baz | bim |
+
+## Callout
+
+
+:::warning{title="warning!"}
+This is a warning!
+:::
+
+<Callout type="info">
+*Some* text
+and a Table
+| foo | bar |
+| --- | --- |
+| baz | bim |
+</Callout>
+
+## Imports
+
+`import Partial from "./partial.mdx"` - needed server support or EST mod
+

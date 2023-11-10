@@ -2,7 +2,20 @@ import Editor from '@monaco-editor/react';
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { ErrorBoundary } from "react-error-boundary";
 
+function Fallback({ error }) {
+    return (
+        <div>
+            <p>Something went wrong:</p>
+            <pre style={{ background: '#fa8e8e', color: '#fff', border: 'solid 2px #f00', padding: 10 }}>{error.message}</pre>
+        </div>
+    );
+}
+
+function RenderContent({ content }) {
+    return content();
+}
 
 export function DemoStand(props) {
     const { tabs, values, onChange, errors = [], content } = props;
@@ -15,7 +28,7 @@ export function DemoStand(props) {
                         {tabs.map((label) => (<Tab key={label}>{label}</Tab>))}
                     </TabList>
                     {values.map(({ language = 'json', value = '', readOnly = false }) => (<TabPanel>
-                        <Editor height="90vh" defaultLanguage="markdown" defaultValue={value} defaultPath='example.markdoc' onChange={onChange} options={{ readOnly }} />
+                        <Editor height="90vh" defaultLanguage="markdown" defaultValue={value ?? ''} defaultPath='example.markdoc' onChange={onChange} options={{ readOnly }} />
                     </TabPanel>))}
                 </Tabs>
                 <div style={{ padding: '10px', borderLeft: 'solid 2px #444', height: '100vh', overflow: 'scroll', width: '100%' }}>
@@ -24,7 +37,9 @@ export function DemoStand(props) {
                         {JSON.stringify(errors, undefined, ' ')}
                     </pre>
                     }
-                    {content}
+                    <ErrorBoundary FallbackComponent={Fallback}>
+                        <RenderContent content={content} />
+                    </ErrorBoundary>
                 </div>
             </div>
         </main >
